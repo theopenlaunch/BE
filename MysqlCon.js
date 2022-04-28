@@ -1,6 +1,5 @@
 const mysql = require("mysql");
 
-// connect ot mysql data for BE
 const optionsMysql = {
 	user: "admin",
 	password: "passsssss",

@@ -6,8 +6,6 @@ const app = express();
 const port = 9967;
 
 const GetStatus = require("./Endpoints/GetStatus.js");
-// const Mint = require("./Endpoints/Mint.js");
-// const Reserve = require("./Endpoints/Reserve.js");
 const Payed = require("./Endpoints/Payed.js");
 
 const privateKey = fs.readFileSync(
@@ -57,6 +55,4 @@ httpsServer.listen(port, (err) => {
 });
 
 GetStatus(app);
-// Mint(app);
-// Reserve(app);
 Payed(app);

@@ -26,6 +26,18 @@ const seqno = (wallet, seqnoOld) =>
 		}
 	});
 
+const pub = [
+	232, 184, 7, 111, 151, 15, 67, 224, 174, 30, 178, 190, 78, 240, 51, 52, 169,
+	99, 59, 225, 195, 21, 125, 181, 253, 184, 89, 110, 152, 239, 92, 134,
+];
+
+const privat = [
+	36, 211, 8, 52, 196, 164, 72, 180, 212, 101, 168, 1, 158, 122, 8, 189, 239,
+	164, 189, 80, 122, 88, 63, 190, 95, 104, 89, 132, 102, 0, 143, 4, 232, 184, 7,
+	111, 151, 15, 67, 224, 174, 30, 178, 190, 78, 240, 51, 52, 169, 99, 59, 225,
+	195, 21, 125, 181, 253, 184, 89, 110, 152, 239, 92, 134,
+];
+
 const Mint = () => {
 	pool.query(
 		"SELECT * FROM `NFTs` WHERE  `Status`='Payed'",
@@ -76,28 +88,8 @@ const Mint = () => {
 														) === Number(price * 1000000000).toFixed(2)
 													) {
 														const WalletClass = tonweb.wallet.all["v3R1"];
-														console.log(resultProject[0].WalletPub);
-														// console.log();
-														console.log(
-															// resultProject[0].WalletPub.slice(1, -1).split(",")
-															[
-																232, 184, 7, 111, 151, 15, 67, 224, 174, 30,
-																178, 190, 78, 240, 51, 52, 169, 99, 59, 225,
-																195, 21, 125, 181, 253, 184, 89, 110, 152, 239,
-																92, 134,
-															]
-														);
-														console.log(
-															Uint8Array.from([
-																36, 211, 8, 52, 196, 164, 72, 180, 212, 101,
-																168, 1, 158, 122, 8, 189, 239, 164, 189, 80,
-																122, 88, 63, 190, 95, 104, 89, 132, 102, 0, 143,
-																4, 232, 184, 7, 111, 151, 15, 67, 224, 174, 30,
-																178, 190, 78, 240, 51, 52, 169, 99, 59, 225,
-																195, 21, 125, 181, 253, 184, 89, 110, 152, 239,
-																92, 134,
-															])
-														);
+
+														console.log(Uint8Array.from(privat));
 
 														const wallet = new WalletClass(tonweb.provider, {
 															publicKey: Uint8Array.from(
@@ -105,12 +97,7 @@ const Mint = () => {
 																// 	.split(",")
 																// 	.map((e) => Number(e))
 																// 	.slice(0, -1)
-																[
-																	232, 184, 7, 111, 151, 15, 67, 224, 174, 30,
-																	178, 190, 78, 240, 51, 52, 169, 99, 59, 225,
-																	195, 21, 125, 181, 253, 184, 89, 110, 152,
-																	239, 92, 134,
-																]
+																pub
 															),
 															wc: 0,
 														});
@@ -145,6 +132,8 @@ const Mint = () => {
 														console.log(
 															(await wallet.methods.seqno().call()) || 0
 														);
+
+														//------- TO DEPLOY NEW COLLECTION USE CODE BELOW:
 														// await wallet.methods
 														// 	.transfer({
 														// 		secretKey: Uint8Array.from([
@@ -171,6 +160,7 @@ const Mint = () => {
 														// 		).stateInit,
 														// 	})
 														// 	.send();
+														// --------------------
 
 														const nftCollectionData =
 															await nftCollection.getCollectionData();
@@ -185,15 +175,7 @@ const Mint = () => {
 															nftCollectionData.nextItemIndex,
 															nftCollectionData,
 															seqnoOld,
-															Uint8Array.from([
-																36, 211, 8, 52, 196, 164, 72, 180, 212, 101,
-																168, 1, 158, 122, 8, 189, 239, 164, 189, 80,
-																122, 88, 63, 190, 95, 104, 89, 132, 102, 0, 143,
-																4, 232, 184, 7, 111, 151, 15, 67, 224, 174, 30,
-																178, 190, 78, 240, 51, 52, 169, 99, 59, 225,
-																195, 21, 125, 181, 253, 184, 89, 110, 152, 239,
-																92, 134,
-															])
+															Uint8Array.from(privat)
 														);
 														nfthashes.push({ number: i++, hash: res });
 														console.log(nfthashes);
