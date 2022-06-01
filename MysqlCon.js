@@ -2,7 +2,7 @@ const mysql = require("mysql");
 
 const optionsMysql = {
 	user: "admin",
-	password: "passsssss",
+	password: "pass123",
 	database: "Tonana_launchpad",
 };
 

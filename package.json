@@ -2,6 +2,7 @@
   "name": "portfolio_api",
   "version": "1.1.2",
   "dependencies": {
+    "@pinata/sdk": "^1.1.25",
     "concurrently": "^4.1.2",
     "express": "^4.17.1",
     "https": "^1.0.0",

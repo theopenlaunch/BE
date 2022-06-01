@@ -6,6 +6,7 @@ const GetStatus = (app) => {
 			con.query(
 				"SELECT * FROM `Projects` ORDER BY `Id`",
 				(err1, resultsCom) => {
+					resultsCom.forEach((e) => (e["WalletPrivat"] = null));
 					res.send(JSON.stringify({ status: "ok", status: resultsCom }));
 				}
 			);

@@ -1,5 +1,4 @@
 const pool = require("../MysqlCon.js").pool;
-const { CreateImg } = require("./CreateImg");
 
 const Payed = (app) => {
 	app.post("/API/payedIds", function (req, res) {
@@ -8,9 +7,11 @@ const Payed = (app) => {
 		try {
 			pool.getConnection((err, con) => {
 				con.query(
-					"INSERT INTO `NFTs` (`Id`, `InvoiceId`, `ProjectId`, `Wallet`, `Hash`, `Status`, `Time`) VALUES (1, '" +
+					"INSERT INTO `NFTs` (`Id`, `InvoiceId`, `ProjectId`, `Wallet`, `Hash`, `Status`, `Time`) VALUES (NULL, '" +
 						data.invoiceId +
-						"', 3,'','', 'Payed', " +
+						"', " +
+						data.invoiceId.slice(16) +
+						",'','', 'Payed', " +
 						Date.now() +
 						" );",
 					(_, resultsInf) => {
