@@ -3,22 +3,22 @@ const https = require("https");
 const fs = require("fs");
 
 const app = express();
-const port = 9967;
+const port = 9996;
 
 const GetStatus = require("./Endpoints/GetStatus.js");
 const Payed = require("./Endpoints/Payed.js");
 const AddCollection = require("./Endpoints/AddCollection.js");
 
 const privateKey = fs.readFileSync(
-	"/home/admin/conf/web/ssl.launchpad.tonana.org.key",
+	"/home/admin/conf/web/ssl.sol.launchpad.tonana.org.key",
 	"utf8"
 );
 const certificate = fs.readFileSync(
-	"/home/admin/conf/web/ssl.launchpad.tonana.org.crt",
+	"/home/admin/conf/web/ssl.sol.launchpad.tonana.org.crt",
 	"utf8"
 );
 const ca = fs.readFileSync(
-	"/home/admin/conf/web/ssl.launchpad.tonana.org.ca",
+	"/home/admin/conf/web/ssl.sol.launchpad.tonana.org.ca",
 	"utf8"
 );
 
@@ -51,7 +51,7 @@ httpsServer.listen(port, (err) => {
 		return console.log("something bad happened", err);
 	}
 	console.log("\n-------------------------------------------");
-	console.log(`TONANA_LAUNCHPAD API server is listening on ${port}`);
+	console.log(`Tonana_launchpad_sol API server is listening on ${port}`);
 	console.log("-------------------------------------------\n");
 });
 
