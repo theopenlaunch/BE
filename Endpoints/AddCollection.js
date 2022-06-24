@@ -112,6 +112,22 @@ const AddCollection = async (app) => {
 					value: data.maxFunding,
 				},
 				{
+					trait_type: "Category",
+					value: data.Category,
+				},
+				{
+					trait_type: "VideoLink",
+					value: data.VideoLink,
+				},
+				{
+					trait_type: "PresentationLink",
+					value: data.PresentationLink,
+				},
+				{
+					trait_type: "WhitepaperLink",
+					value: data.WhitepaperLink,
+				},
+				{
 					trait_type: "Level",
 					value: 1,
 				},
@@ -190,12 +206,21 @@ const AddCollection = async (app) => {
 			data.description,
 			data.endDate,
 			nftCollectionAddress.toString(true, true, false),
+			data.Category,
+			data.VideoLink,
+			data.PresentationLink,
+			data.WhitepaperLink,
 		];
-		console.log(JSON.stringify(godata));
+
+		console.log(
+			"INSERT INTO Tonana_launchpad_sol.Projects (Id, Title, Wallet,	WalletPrivat, WalletPub, NFTsMeta, Max, Rised, NFTCollectionURL,	Picture,	Description,	EndDate,	NFTCollHash, Category, VideoLink, PresentationLink, WhitepaperLink) VALUES (NULL, '" +
+				godata.join("', '") +
+				"');"
+		);
 
 		pool.getConnection((err, con) => {
 			con.query(
-				"INSERT INTO Tonana_launchpad.Projects (Id, Title, Wallet,	WalletPrivat, WalletPub, NFTsMeta, Max, Rised, NFTCollectionURL,	Picture,	Description,	EndDate,	NFTCollHash) VALUES (NULL, '" +
+				"INSERT INTO Tonana_launchpad_sol.Projects (Id, Title, Wallet,	WalletPrivat, WalletPub, NFTsMeta, Max, Rised, NFTCollectionURL,	Picture,	Description,	EndDate,	NFTCollHash, Category, VideoLink, PresentationLink, WhitepaperLink) VALUES (NULL, '" +
 					godata.join("', '") +
 					"');",
 				(err1, resultsCom) => {
@@ -208,3 +233,24 @@ const AddCollection = async (app) => {
 };
 
 module.exports = AddCollection;
+
+// fetch("https://launchpad.tonana.org:9967/API/addCollection", {
+// 	method: "POST",
+// 	headers: { "Content-Type": "application/json" },
+// 	body: JSON.stringify({
+// 		title: "Plastic by sisters Lapay",
+// 		description:
+// 			"Plastic is an ecosystem project that includes virtual bloggers with their own content on TikTok(2.2M) / Instagram (80K), an animated series with adult humor, a thematic metaverse for the plastics community, and a decentralized economy for co-creators.",
+// 		image:
+// 			"https://yt3.ggpht.com/45Bnpsp16jnYKQLW5oDVsYmUjXMbpq2VGg9sU-JZcjd883nPGy_ObrxpMw2E8Pi2FkosZq6f=s900-c-k-c0x00ffffff-no-rj",
+// 		externalUrl: "https://www.tiktok.com/@plastic_by_sisters_lapay",
+// 		endDate: 1669773947,
+// 		maxFunding: 50000,
+// 		Category: "NFTs",
+// 		VideoLink: "https://google.com",
+// 		PresentationLink: "https://google.com",
+// 		WhitepaperLink: "https://google.com",
+// 	}),
+// })
+// 	.then((e) => e.json())
+// 	.then(console.log);
