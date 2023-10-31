@@ -8,6 +8,8 @@ const port = 9967;
 const GetStatus = require("./Endpoints/GetStatus.js");
 const Payed = require("./Endpoints/Payed.js");
 const AddCollection = require("./Endpoints/AddCollection.js");
+const Signin = require("./Endpoints/Signin.js");
+const Signup = require("./Endpoints/Signup.js");
 
 const privateKey = fs.readFileSync(
 	"/home/admin/conf/web/ssl.launchpad.tonana.org.key",
@@ -58,3 +60,5 @@ httpsServer.listen(port, (err) => {
 GetStatus(app);
 Payed(app);
 AddCollection(app);
+Signin(app);
+Signup(app);

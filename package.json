@@ -3,11 +3,13 @@
   "version": "1.1.2",
   "dependencies": {
     "@pinata/sdk": "^1.1.25",
+    "bcrypt": "^5.1.1",
     "concurrently": "^4.1.2",
     "dotenv": "^16.3.1",
     "express": "^4.17.1",
     "https": "^1.0.0",
     "jimp": "^0.16.1",
+    "jsonwebtoken": "^9.0.2",
     "mysql": "^2.18.1",
     "nodemailer": "^6.4.6",
     "tonweb": "^0.0.38"
