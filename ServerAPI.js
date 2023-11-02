@@ -8,6 +8,18 @@ const port = 9967;
 const GetStatus = require("./Endpoints/GetStatus.js");
 const Payed = require("./Endpoints/Payed.js");
 const AddCollection = require("./Endpoints/AddCollection.js");
+const Signin = require("./Endpoints/Signin.js");
+const Signup = require("./Endpoints/Signup.js");
+
+const { createProjectsTable } = require('./Models/projectsModel.js');
+const { createUsersTable } = require('./Models/usersModel.js');
+const { createContributionsTable } = require('./Models/contributionsModel.js');
+const { createRewardsTable } = require('./Models/rewardsModel.js');
+
+createProjectsTable();
+createUsersTable();
+createContributionsTable();
+createRewardsTable();
 
 const privateKey = fs.readFileSync(
 	"/home/admin/conf/web/ssl.launchpad.tonana.org.key",
@@ -35,6 +47,10 @@ app.use(
 );
 app.use(express.json());
 
+//example of end-point
+app.use('/api/projects', projectRoutes);
+
+
 var allowCrossDomain = function (req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
@@ -55,6 +71,9 @@ httpsServer.listen(port, (err) => {
 	console.log("-------------------------------------------\n");
 });
 
+// TODO: Fix all of the pages to use router
 GetStatus(app);
 Payed(app);
 AddCollection(app);
+Signin(app);
+Signup(app);
